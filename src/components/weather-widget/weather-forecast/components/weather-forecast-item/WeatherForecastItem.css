@@ -1,0 +1,27 @@
+.weather-forecast-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-forecast-item--selected {
+    border: 1px solid #C69887;
+    border-radius: 12px;
+    background-color: rgba(247, 248, 250, 0.18);
+}
+
+.weather-forecast-item_date {
+    font-size: 14px;
+    text-align: center;
+}
+
+.weather-forecast-item_icon {
+    height: 42px;
+    margin-top: 16px;
+    margin-bottom: 19px;
+}
+
+.weather-forecast-item_temperature {
+    font-size: 14px;
+    text-align: center;
+    font-weight: 300;
+}

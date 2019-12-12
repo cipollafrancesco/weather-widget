@@ -1,0 +1,19 @@
+.current-weather_container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.current-weather-temperature_value {
+    font-size: 50px;
+    font-weight: 300;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.current-weather_extra-info {
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 7px;
+}
