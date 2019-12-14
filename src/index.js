@@ -44,7 +44,7 @@ function App() {
         <div className="App">
             <FlipCard
                 frontComponent={<WeatherWidget location={location}/>}
-                backComponent={<LocationMap/>}
+                backComponent={<LocationMap currentLocation={location}/>}
             />
         </div>
     )

@@ -64,7 +64,8 @@ const WeatherWidget = (props: IWeatherWidgetProps) => {
             />
 
             {/* CURRENT INFO*/}
-            <CurrentWeather currentWeatherData={currentWeatherData} isFetchInPending={isFetchCurrentWeatherInPending}/>
+            <CurrentWeather currentWeatherData={currentWeatherData}
+                            isFetchInPending={isFetchCurrentWeatherInPending}/>
 
             <hr className="divider"/>
 

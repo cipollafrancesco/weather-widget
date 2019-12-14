@@ -20,3 +20,4 @@ export async function fetchWeatherData(apiUrl: string = '', queryParams: any, sh
     showSpinnerCallback && showSpinnerCallback(false)
     return jsonResponse
 }
+

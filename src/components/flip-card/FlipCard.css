@@ -1,6 +1,8 @@
 .flip-card {
-    width: 95%;
-    height: 100%;
+    width: 768px;
+    height: 545px;
+    position: relative;
+
     transition: transform 1s;
     transform-style: preserve-3d;
     cursor: pointer;
@@ -9,19 +11,20 @@
 }
 
 .flip-card-face {
-    padding: 24px 0;
     height: 100%;
     width: 100%;
     backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../../assets/flip-background.png");
 }
 
 .flip-card-face_front {
-    background-image: url("../../assets/flip-background.png");
     background-size: cover;
 }
 
 .flip-card-face_back {
-    background-color: cornflowerblue;
     transform: rotateY(180deg);
 }
 
