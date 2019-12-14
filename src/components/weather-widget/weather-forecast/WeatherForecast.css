@@ -1,4 +1,12 @@
 .weather-forecast_container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.weather-forecast_placeholder {
+    color: white;
+    margin: 24px 0;
+    font-weight: 300;
 }

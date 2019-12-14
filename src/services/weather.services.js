@@ -8,8 +8,15 @@ export const WEATHERBIT_SERVER_URL_CURRENT = 'https://api.weatherbit.io/v2.0/cur
 export const MOCKABLE_SERVER_URL_FORECAST = 'http://demo0406688.mockable.io/v2.0/forecast/daily'
 export const MOCKABLE_SERVER_URL_CURRENT = 'https://demo0406688.mockable.io/v2.0/current'
 
-export async function fetchWeatherData(apiUrl: string = '', queryParams: any) {
+export async function fetchWeatherData(apiUrl: string = '', queryParams: any, showSpinnerCallback?: any) {
+    // SHOW SPINNER
+    showSpinnerCallback && showSpinnerCallback(true)
+
     const stringifiedQP = stringifyQueryParams({key: WEATHERBIT_API_KEY, ...queryParams})
     const response = await fetch(`${apiUrl}${stringifiedQP}`)
-    return await response.json()
+    const jsonResponse = await response.json()
+
+    // HIDE SPINNER
+    showSpinnerCallback && showSpinnerCallback(false)
+    return jsonResponse
 }

@@ -22,48 +22,56 @@ interface IWeatherWidgetProps {
 
 const WeatherWidget = (props: IWeatherWidgetProps) => {
 
+    const {location} = props
+
     const [currentWeatherData, setCurrentWeatherData] = useState<IWeatherCurrentData | null>(null)
+    const [isFetchCurrentWeatherInPending, setFetchCurrentWeatherInPending] = useState<boolean>(false)
+
     const [currentForecastWeatherData, setCurrentForecastWeatherData] = useState<IWeatherBitResponseData[] | null>(null)
+    const [isFetchForecastInPending, setFetchForecastInPending] = useState<boolean>(false)
 
     useEffect(() => {
-        console.log('POSITION -->', props.location)
+        if (location) {
 
-        const COORDINATES_QP = {lat: '38.25', lon: '-78.00'}
+            const COORDINATES_QP = {lat: location.latitude, lon: location.longitude}
 
-        // FETCH CURRENT WEATHER DATA
-        fetchWeatherData(MOCKABLE_SERVER_URL_CURRENT, {...COORDINATES_QP})
-            .then(
-                (response: IWeatherBitResponse) => setCurrentWeatherData(currentWeatherDataSelector(response)),
-                (error) => console.error('ERROR IN FETCH CALL!')
-            )
+            // FETCH CURRENT WEATHER DATA
+            fetchWeatherData(MOCKABLE_SERVER_URL_CURRENT, {...COORDINATES_QP}, setFetchCurrentWeatherInPending)
+                .then(
+                    (response: IWeatherBitResponse) => setCurrentWeatherData(currentWeatherDataSelector(response)),
+                    (error) => console.error('ERROR IN FETCH CALL!')
+                )
 
-        // FETCH FORECAST WEATHER DATA
-        fetchWeatherData(MOCKABLE_SERVER_URL_FORECAST, {...COORDINATES_QP, days: 7})
-            .then(
-                (response: IWeatherBitResponse) => setCurrentForecastWeatherData(response.data),
-                (error) => console.error('ERROR IN FETCH CALL!')
-            )
-    }, [])
+            // FETCH FORECAST WEATHER DATA
+            fetchWeatherData(MOCKABLE_SERVER_URL_FORECAST, {...COORDINATES_QP, days: 7}, setFetchForecastInPending)
+                .then(
+                    (response: IWeatherBitResponse) => setCurrentForecastWeatherData(response.data),
+                    (error) => console.error('ERROR IN FETCH CALL!')
+                )
+        }
+    }, [location])
 
     // RITORNA I DATI DEL METEO DI OGGI
     const currentWeatherDataSelector = (weatherData: IWeatherBitResponse | null): IWeatherCurrentData =>
         weatherData && Array.isArray(weatherData.data) && weatherData.data[0]
 
     return (
-        currentWeatherData ?
-            <div className="weather-widget_container">
-                {/* LOCATION */}
-                <WeatherLocation cityName={currentWeatherData.city_name}/>
+        <div className="weather-widget_container">
 
-                {/* CURRENT INFO*/}
-                <CurrentWeather currentWeatherData={currentWeatherData}/>
+            {/* LOCATION */}
+            <WeatherLocation cityName={currentWeatherData && currentWeatherData.city_name}
+                             isFetchInPending={isFetchCurrentWeatherInPending}
+            />
 
-                <hr className="divider"/>
+            {/* CURRENT INFO*/}
+            <CurrentWeather currentWeatherData={currentWeatherData} isFetchInPending={isFetchCurrentWeatherInPending}/>
 
-                {/* FORECAST (7 days) */}
-                <WeatherForecast forecastWeatherData={currentForecastWeatherData}/>
-            </div>
-            : <span>SPINNER</span>
+            <hr className="divider"/>
+
+            {/* FORECAST (7 days) */}
+            <WeatherForecast forecastWeatherData={currentForecastWeatherData}
+                             isFetchInPending={isFetchForecastInPending}/>
+        </div>
     )
 }
 

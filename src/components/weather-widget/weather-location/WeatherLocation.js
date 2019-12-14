@@ -1,10 +1,11 @@
 // @flow
 import React from 'react'
 import './WeatherLocation.css'
-import PinIcon from '../../../assets/PinIcon.png'
+import PinIcon from '../../../assets/PinIcon.svg'
 
 interface IWeatherLocationProps {
-    cityName: string
+    cityName: string,
+    isFetchInPending: boolean
 }
 
 /* LOCATION WITH ICON */
@@ -16,7 +17,9 @@ const WeatherLocation = (props: IWeatherLocationProps) => {
                 src={PinIcon}
                 alt="position-marker"
             />
-            <span className="location_label">{props.cityName || 'Your location'}</span>
+            <span className="location_label">
+                {props.isFetchInPending ? 'Getting location...' : (props.cityName || 'Your location')}
+            </span>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 .current-weather_container {
-    margin-top: 25px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }

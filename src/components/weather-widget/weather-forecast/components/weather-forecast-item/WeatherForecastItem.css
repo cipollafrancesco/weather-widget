@@ -1,11 +1,14 @@
 .weather-forecast-item {
     display: flex;
     flex-direction: column;
+    margin: 25px 15px;
 }
 
 .weather-forecast-item--selected {
+    margin: 25px 0;
     border: 1px solid #C69887;
     border-radius: 12px;
+    padding: 15px 18px;
     background-color: rgba(247, 248, 250, 0.18);
 }
 

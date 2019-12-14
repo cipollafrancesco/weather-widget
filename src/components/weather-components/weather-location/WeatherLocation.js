@@ -1,6 +1,6 @@
 import React from 'react'
 import './WeatherLocation.css'
-import PinIcon from '../../../assets/PinIcon.png'
+import PinIcon from '../../../assets/PinIcon.svg'
 
 /* LOCATION WITH ICON */
 const WeatherLocation = props => {

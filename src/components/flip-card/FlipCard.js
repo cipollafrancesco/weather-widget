@@ -2,7 +2,10 @@
 import React from 'react'
 import './FlipCard.css'
 
-const FlipCard = props => {
+interface IFlipCardProps {
+}
+
+const FlipCard = (props: IFlipCardProps) => {
     return (
         <div className="flip-card">
             <div className="flip-card-face flip-card-face_front">{props.frontComponent}</div>

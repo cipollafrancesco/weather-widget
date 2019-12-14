@@ -1,0 +1,9 @@
+{
+  "short_name": "Weather",
+  "name": "Onion's Weather",
+  "icons": [],
+  "start_url": "/",
+  "background_color": "#FFF",
+  "display": "standalone",
+  "theme_color": "#FFF"
+}

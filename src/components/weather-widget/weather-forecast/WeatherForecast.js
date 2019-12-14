@@ -5,7 +5,8 @@ import type {IWeatherBitResponseData} from '../../../services/weather-widget.typ
 import WeatherForecastItem from './components/weather-forecast-item/WeatherForecastItem'
 
 interface IWeatherForecastProps {
-    forecastWeatherData: IWeatherBitResponseData[]
+    forecastWeatherData: IWeatherBitResponseData[],
+    isFetchInPending: boolean,
 }
 
 /* LOCATION WITH ICON */
@@ -16,15 +17,23 @@ const WeatherForecast = (props: IWeatherForecastProps) => {
     return (
         <div className="weather-forecast_container">
             {
-                Array.isArray(forecastWeatherData) &&
-                forecastWeatherData.map(({datetime, max_temp, min_temp}: IWeatherBitResponseData, index: number) =>
-                    <WeatherForecastItem key={`forecast_${index}`}
-                                         date={datetime}
-                                         maxTemp={max_temp}
-                                         minTemp={min_temp}
-                                         iconType={''}
-                    />
-                )
+                Array.isArray(forecastWeatherData) ?
+                    forecastWeatherData.map(({datetime, max_temp, min_temp, weather}: IWeatherBitResponseData, index: number) =>
+                        <WeatherForecastItem key={`forecast_${index}`}
+                                             date={datetime}
+                                             maxTemp={max_temp}
+                                             minTemp={min_temp}
+                                             weatherCode={weather.code}
+                                             current={!index}
+                        />
+                    ) :
+                    <span className="weather-forecast_placeholder">
+                        {
+                            props.isFetchInPending ?
+                                'Our meteorologist is retrieving your infos...' :
+                                'Could not retrieve data, please try again later!'
+                        }
+                    </span>
             }
         </div>
     )
