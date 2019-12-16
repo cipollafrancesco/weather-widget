@@ -1,19 +1,22 @@
 //@flow
 import React from 'react'
 import './WeatherForecastItem.css'
-import {MAP_DAY_NUMBER_TO_STRING} from '../../../../../utils'
-import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../../../../services/weather-widget.types'
-import {MAP_WEATHER_CODE_TO_TYPE} from '../../../../../services/weather-codes.mapper'
+import {MAP_DAY_NUMBER_TO_STRING} from '../../../../utils'
+import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../../../services/weather-services.types'
+import {MAP_WEATHER_CODE_TO_TYPE} from '../../../../services/weather-codes.mapper'
 
 interface IWeatherForecastItemProps {
     minTemp: number,
     maxTemp: number,
     date: string,
     weatherCode?: string,
-    current?: boolean
+    current?: boolean,
+    onClick?: (event: any) => any
 }
 
 const WeatherForecastItem = (props: IWeatherForecastItemProps) => {
+
+    const {onClick} = props
 
     const forecastDate = new Date(props.date)
 
@@ -24,8 +27,8 @@ const WeatherForecastItem = (props: IWeatherForecastItemProps) => {
     const weatherIcon = weatherType && MAP_WEATHER_CONDITIONS_TO_ICON[weatherType]
 
     return (
-        // TODO CAPIRE PERCHE NON VA FIRST CHILD
-        <div className={`weather-forecast-item ${props.current ? 'weather-forecast-item--selected' : ''}`}>
+        <div className={`weather-forecast-item ${props.current ? 'weather-forecast-item--selected' : ''}`}
+             onClick={onClick}>
 
             {/* WEEK DATE - NUMBER */}
             <span className="weather-forecast-item_date">{dayOfTheWeek} {monthDay}</span>

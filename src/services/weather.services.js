@@ -16,7 +16,7 @@ export async function fetchWeatherData(apiUrl: string = '', queryParams: any, sh
     const response = await fetch(`${apiUrl}${stringifiedQP}`)
     const jsonResponse = await response.json()
 
-    // HIDE SPINNER
+    // HIDE SPINNER ON SUCCESS
     showSpinnerCallback && showSpinnerCallback(false)
     return jsonResponse
 }

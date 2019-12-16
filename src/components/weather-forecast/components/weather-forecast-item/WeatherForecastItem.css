@@ -1,24 +1,37 @@
 .weather-forecast-item {
     display: flex;
     flex-direction: column;
-    margin: 25px 15px;
+    padding: 15px 18px;
+    margin: 25px 0;
+}
+
+/* ITEM SELECTION ANIMATION */
+@keyframes weather-forecast-item--selected {
+    from {
+        border: 0;
+        background-color: transparent;
+    }
+    to {
+        border: 1px solid #C69887;
+        background-color: rgba(247, 248, 250, 0.18);
+    }
 }
 
 .weather-forecast-item--selected {
-    margin: 25px 0;
-    border: 1px solid #C69887;
     border-radius: 12px;
-    padding: 15px 18px;
-    background-color: rgba(247, 248, 250, 0.18);
+    animation: weather-forecast-item--selected 0.3s linear both;
 }
+
 
 .weather-forecast-item_date {
     font-size: 14px;
+    font-weight: 300;
     text-align: center;
 }
 
 .weather-forecast-item_icon {
     height: 42px;
+    width: 60px;
     margin-top: 16px;
     margin-bottom: 19px;
 }

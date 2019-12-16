@@ -1,9 +1,9 @@
 // @flow
 import React from 'react'
 import './CurrentWeather.css'
-import type {IWeatherCurrentData} from '../../../services/weather-widget.types'
-import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../../services/weather-widget.types'
-import {MAP_WEATHER_CODE_TO_TYPE} from '../../../services/weather-codes.mapper'
+import type {IWeatherCurrentData} from '../../services/weather-services.types'
+import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../services/weather-services.types'
+import {MAP_WEATHER_CODE_TO_TYPE} from '../../services/weather-codes.mapper'
 
 interface ICurrentWeatherProps {
     currentWeatherData: IWeatherCurrentData,
@@ -29,22 +29,22 @@ const CurrentWeather = (props: ICurrentWeatherProps) => {
                     currentWeatherData ?
                         <>
                             {/* CURRENT CONDITION ICON */}
-                            <img src={weatherIcon} height={130} alt={weatherType}/>
+                            <img src={weatherIcon} height={130} width={220} alt={weatherType}/>
 
                             {/* CURRENT TEMPERATURE */}
-                            {currentWeatherData.temp &&
-                            <span
-                                className="current-weather-temperature_value">{currentWeatherData.temp.toFixed()}°</span>}
+                            <span className="current-weather-temperature_value">
+                                {currentWeatherData.temp ? `${currentWeatherData.temp.toFixed()}°` : '-'}
+                            </span>
 
                             {/* CURRENT FEELS LIKE */}
-                            {currentWeatherData.app_temp &&
-                            <span
-                                className="current-weather_extra-info">Feels like: {currentWeatherData.app_temp.toFixed()}°</span>}
+                            <span className="current-weather_extra-info">
+                                Feels like: {currentWeatherData.app_temp ? `${currentWeatherData.app_temp.toFixed()}°` : '-'}
+                            </span>
 
                             {/* CURRENT HUMIDITY */}
-                            {currentWeatherData.rh &&
-                            <span
-                                className="current-weather_extra-info"> Humidity: {currentWeatherData.rh.toFixed()}%</span>}
+                            <span className="current-weather_extra-info">
+                                Humidity: {currentWeatherData.rh ? `${currentWeatherData.rh.toFixed()}%` : '-'}
+                            </span>
                         </>
                         // ERROR MESSAGE
                         : <span className="current-weather_extra-info"> Ops! We're sorry but something went wrong</span>

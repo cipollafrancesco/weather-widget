@@ -4,8 +4,9 @@ import './utils.css'
 import React, {useEffect, useState} from 'react'
 import ReactDOM from 'react-dom'
 import FlipCard from './components/flip-card/FlipCard'
-import WeatherWidget from './components/weather-widget/WeatherWidget'
+import WeatherWidget from './components/WeatherWidget'
 import LocationMap from './components/location-map/LocationMap'
+import {getUserCurrentPosition} from './utils'
 
 export interface ILocation {
     latitude: string,
@@ -14,38 +15,26 @@ export interface ILocation {
 
 function App() {
 
+    // CURRENT USER LOCATION
     const [location, setLocation] = useState<ILocation | null>(null)
 
-    const handleWatchPositionSuccess = (position: Position) => {
-        console.log('CURRENT POSITION -->', position.coords)
-        setLocation(position.coords)
-    }
-
-    const handleWatchPositionError = (error: PositionError) => {
-        console.error('GEOLOCATION ERROR -->', error.message)
-    }
-
-    const getCurrentLocation = () => {
-        const GEOLOCATION_OPTIONS: PositionOptions = {enableHighAccuracy: 700, maximumAge: 300000, timeout: 270000}
-        if (navigator.geolocation) {
-            // TODO USE WATCH WITH REFRESH TIME SPECIFIED
-            navigator.geolocation.getCurrentPosition(handleWatchPositionSuccess, handleWatchPositionError, GEOLOCATION_OPTIONS)
-        } else {
-            console.error('GEOLOCATION NOT SUPPORTED!')
-        }
-    }
-
+    // DID MOUNT
     useEffect(() => {
         // GET LOCATION
-        getCurrentLocation()
+        getUserCurrentPosition(
+            (position: Position) => setLocation(position.coords),
+            (error: PositionError) => console.error('GEOLOCATION ERROR -->', error.message),
+            {enableHighAccuracy: 300, maximumAge: 3000, timeout: 50000}
+        )
     }, [])
 
     return (
         <div className="App">
-            <FlipCard
-                frontComponent={<WeatherWidget location={location}/>}
-                backComponent={<LocationMap currentLocation={location}/>}
-            />
+            <div style={{width: 768, height: 545}}>
+                <FlipCard frontComponent={<WeatherWidget location={location}/>}
+                          backComponent={<LocationMap currentLocation={location}/>}
+                />
+            </div>
         </div>
     )
 }
