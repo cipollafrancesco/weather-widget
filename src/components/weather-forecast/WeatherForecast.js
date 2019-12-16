@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import './WeatherForecast.css'
-import type {IWeatherBitResponseData} from '../../../services/weather-widget.types'
+import type {IWeatherBitResponseData} from '../../services/weather-widget.types'
 import WeatherForecastItem from './components/weather-forecast-item/WeatherForecastItem'
 
 interface IWeatherForecastProps {

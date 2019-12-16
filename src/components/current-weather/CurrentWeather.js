@@ -1,9 +1,9 @@
 // @flow
 import React from 'react'
 import './CurrentWeather.css'
-import type {IWeatherCurrentData} from '../../../services/weather-widget.types'
-import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../../services/weather-widget.types'
-import {MAP_WEATHER_CODE_TO_TYPE} from '../../../services/weather-codes.mapper'
+import type {IWeatherCurrentData} from '../../services/weather-widget.types'
+import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../services/weather-widget.types'
+import {MAP_WEATHER_CODE_TO_TYPE} from '../../services/weather-codes.mapper'
 
 interface ICurrentWeatherProps {
     currentWeatherData: IWeatherCurrentData,

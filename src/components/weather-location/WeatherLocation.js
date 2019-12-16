@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import './WeatherLocation.css'
-import PinIcon from '../../../assets/PinIcon.svg'
+import PinIcon from '../../assets/PinIcon.svg'
 
 interface IWeatherLocationProps {
     cityName: string,

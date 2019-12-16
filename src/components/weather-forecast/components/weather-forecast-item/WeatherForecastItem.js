@@ -1,9 +1,9 @@
 //@flow
 import React from 'react'
 import './WeatherForecastItem.css'
-import {MAP_DAY_NUMBER_TO_STRING} from '../../../../../utils'
-import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../../../../services/weather-widget.types'
-import {MAP_WEATHER_CODE_TO_TYPE} from '../../../../../services/weather-codes.mapper'
+import {MAP_DAY_NUMBER_TO_STRING} from '../../../../utils'
+import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../../../services/weather-widget.types'
+import {MAP_WEATHER_CODE_TO_TYPE} from '../../../../services/weather-codes.mapper'
 
 interface IWeatherForecastItemProps {
     minTemp: number,

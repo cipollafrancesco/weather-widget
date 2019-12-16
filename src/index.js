@@ -4,7 +4,7 @@ import './utils.css'
 import React, {useEffect, useState} from 'react'
 import ReactDOM from 'react-dom'
 import FlipCard from './components/flip-card/FlipCard'
-import WeatherWidget from './components/weather-widget/WeatherWidget'
+import WeatherWidget from './components/WeatherWidget'
 import LocationMap from './components/location-map/LocationMap'
 
 export interface ILocation {
