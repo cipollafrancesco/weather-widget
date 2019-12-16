@@ -1,4 +1,4 @@
-import {WEATHER_CONDITIONS} from './weather-widget.types'
+import {WEATHER_CONDITIONS} from './weather-services.types'
 
 // const RAINY_RANGE = {min: 200, max: 522}
 // const SNOWY_RANGE = {min: 600, max: 610}

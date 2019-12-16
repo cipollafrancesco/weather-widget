@@ -2,7 +2,7 @@
 import React, {useEffect} from 'react'
 import type {ILocation} from '../../index'
 import './LocationMap.css'
-import {LOCATION_MAP_STYLE_CONFIG} from './location-map-style.config'
+import {addMarkerToMap, initializeMap} from './location-map.utils'
 
 interface ILocationMapProps {
     currentLocation: ILocation
@@ -13,22 +13,11 @@ const LocationMap = (props: ILocationMapProps) => {
 
     const {currentLocation} = props
 
-    // INITIALIZE MAP
-    const initMap = (location: ILocation) => {
-        const googleMaps = window.google && window.google.maps
-        const Map = googleMaps && googleMaps.Map
-        const Marker = googleMaps && googleMaps.Marker
-
-        // CURRENT POSITION
-        const markerLocation = {lat: location.latitude, lng: location.longitude}
-        // CURRENT MAP
-        const map = Map && new Map(document.getElementById(MAP_ELEMENT_ID), {center: {...markerLocation}, zoom: 15, styles: LOCATION_MAP_STYLE_CONFIG})
-        // CURRENT POSITION MARKER
-        const currentPositionMarker = Marker && new Marker({position: {...markerLocation}, map: map,  title: 'Your position'})
-    }
-
     useEffect(() => {
-        currentLocation && initMap(currentLocation)
+        if (currentLocation) {
+            const map = initializeMap(MAP_ELEMENT_ID, currentLocation)
+            const currentPositionMarker = addMarkerToMap(currentLocation, map)
+        }
     }, [currentLocation])
 
     return (
