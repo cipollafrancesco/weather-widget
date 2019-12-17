@@ -1,9 +1,10 @@
 .weather-forecast_container {
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
+    overflow: scroll;
 }
 
 .weather-forecast_placeholder {

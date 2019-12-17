@@ -2,3 +2,8 @@
     font-family: "Open Sans", sans-serif;
     color: white;
 }
+
+html, body, #root, .App {
+    height: 100%;
+    margin: 0;
+}

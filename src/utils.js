@@ -32,3 +32,6 @@ export const getUserCurrentPosition = (successCallback, failureCallback, options
         console.error('GEOLOCATION NOT SUPPORTED!')
     }
 }
+
+// TRUE -> DEV ENV | FALSE -> PROD ENV
+export const isDevMode = (): boolean => !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
