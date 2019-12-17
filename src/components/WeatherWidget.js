@@ -5,7 +5,12 @@ import WeatherLocation from './weather-location/WeatherLocation'
 import CurrentWeather from './current-weather/CurrentWeather'
 import type {ILocation} from '../index'
 import type {IWeatherBitResponse, IWeatherCurrentData} from '../services/weather-services.types'
-import {fetchWeatherData, MOCKABLE_SERVER_URL_CURRENT, MOCKABLE_SERVER_URL_FORECAST} from '../services/weather.services'
+import {
+    fetchWeatherData,
+    MOCKABLE_SERVER_URL_CURRENT,
+    MOCKABLE_SERVER_URL_FORECAST, WEATHERBIT_SERVER_URL_CURRENT,
+    WEATHERBIT_SERVER_URL_FORECAST
+} from '../services/weather.services'
 import WeatherForecast from './weather-forecast/WeatherForecast'
 import {currentWeatherDataSelector} from '../services/weather.utils'
 
@@ -35,14 +40,14 @@ const WeatherWidget = (props: IWeatherWidgetProps) => {
             const COORDINATES_QP = {lat: location.latitude, lon: location.longitude}
 
             // FETCH CURRENT WEATHER DATA
-            fetchWeatherData(MOCKABLE_SERVER_URL_CURRENT, {...COORDINATES_QP}, setFetchCurrentWeatherInPending)
+            fetchWeatherData(WEATHERBIT_SERVER_URL_CURRENT, {...COORDINATES_QP}, setFetchCurrentWeatherInPending)
                 .then(
                     (resp: IWeatherBitResponse) => setCurrentWeatherData(currentWeatherDataSelector(resp)),
                     _ => setFetchCurrentWeatherInPending(false)
                 )
 
             // FETCH FORECAST WEATHER DATA
-            fetchWeatherData(MOCKABLE_SERVER_URL_FORECAST, {...COORDINATES_QP, days: 7}, setFetchForecastInPending)
+            fetchWeatherData(WEATHERBIT_SERVER_URL_FORECAST, {...COORDINATES_QP, days: 7}, setFetchForecastInPending)
                 .then(
                     (resp: IWeatherBitResponse) => setForecastWeatherData(resp),
                     _ => setFetchForecastInPending(false)

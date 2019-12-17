@@ -17,7 +17,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url("../../assets/flip-background.png");
+    background-image: url("/assets/flip-background.png");
 }
 
 .flip-card-face_front {

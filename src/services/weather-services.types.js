@@ -1,7 +1,7 @@
-import Rainy from '../assets/Rainy.svg'
-import Snowy from '../assets/Snow.svg'
-import Sunny from '../assets/Sun.svg'
-import Cloudy from '../assets/Cloud.svg'
+// import Rainy from '../../public/assets/Rainy.svg'
+// import Snowy from '../../public/assets/Snowy.svg'
+// import Sunny from '../../public/assets/Sunny.svg'
+// import Cloudy from '../../public/assets/Cloudy.svg'
 
 export interface IWeatherBitResponseDataWeather {
     icon: string,
@@ -108,9 +108,10 @@ export const WEATHER_CONDITIONS = {
 }
 
 // MAPS TYPE OF WEATHER WITH THE RIGHT ICON
+// FIXME THE ICONS MUST BE IN PUBLIC FOLDER TO WORK WITH CODE-SANDBOX
 export const MAP_WEATHER_CONDITIONS_TO_ICON = {
-    [WEATHER_CONDITIONS.RAINY]: Rainy,
-    [WEATHER_CONDITIONS.SNOWY]: Snowy,
-    [WEATHER_CONDITIONS.SUNNY]: Sunny,
-    [WEATHER_CONDITIONS.CLOUDY]: Cloudy,
+    [WEATHER_CONDITIONS.RAINY]: '/assets/Rainy.svg' /* Rainy */,
+    [WEATHER_CONDITIONS.SNOWY]: '/assets/Snowy.svg' /* Snowy */,
+    [WEATHER_CONDITIONS.SUNNY]: '/assets/Sunny.svg' /* Sunny */,
+    [WEATHER_CONDITIONS.CLOUDY]: '/assets/Cloudy.svg' /* Cloudy */,
 }
