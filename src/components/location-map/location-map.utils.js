@@ -14,6 +14,7 @@ export const initializeMap = (mapElementId: string, location: ILocation) => {
     return Map && new Map(
         document.getElementById(mapElementId),
         {
+            disableDefaultUI: true, // HIDES MAPS CONTROLS
             center: {lat: location.latitude, lng: location.longitude},
             zoom: 15,
             styles: LOCATION_MAP_STYLE_CONFIG

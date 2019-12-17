@@ -1,7 +1,18 @@
 {
   "short_name": "Weather",
   "name": "Onion's Weather",
-  "icons": [],
+  "icons": [
+    {
+      "src": "/hotx256.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "hotx512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
   "start_url": "/",
   "background_color": "#FFF",
   "display": "standalone",

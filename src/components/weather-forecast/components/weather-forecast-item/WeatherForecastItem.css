@@ -8,7 +8,7 @@
 /* ITEM SELECTION ANIMATION */
 @keyframes weather-forecast-item--selected {
     from {
-        border: 0;
+        border: 1px solid transparent;
         background-color: transparent;
     }
     to {
