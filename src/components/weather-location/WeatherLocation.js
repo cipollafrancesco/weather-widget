@@ -1,7 +1,6 @@
 // @flow
 import React from 'react'
 import './WeatherLocation.css'
-import PinIcon from '../../assets/PinIcon.svg'
 
 interface IWeatherLocationProps {
     cityName: string,
@@ -14,7 +13,7 @@ const WeatherLocation = (props: IWeatherLocationProps) => {
         <div className="location_container">
             <img
                 className="location_icon"
-                src={PinIcon}
+                src="/assets/PinIcon.svg"
                 alt="position-marker"
             />
             <span className="location_label">
