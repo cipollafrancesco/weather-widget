@@ -8,6 +8,7 @@ import {MAP_WEATHER_CODE_TO_TYPE} from '../../../../services/weather-codes.mappe
 interface IWeatherForecastItemProps {
     minTemp: number,
     maxTemp: number,
+    description: string,
     date: string,
     weatherCode?: string,
     current?: boolean,
@@ -16,7 +17,7 @@ interface IWeatherForecastItemProps {
 
 const WeatherForecastItem = (props: IWeatherForecastItemProps) => {
 
-    const {onClick} = props
+    const {onClick, description} = props
 
     const forecastDate = new Date(props.date)
 
@@ -38,6 +39,7 @@ const WeatherForecastItem = (props: IWeatherForecastItemProps) => {
                 weatherIcon &&
                 <img src={weatherIcon}
                      className="weather-forecast-item_icon"
+                     title={description}
                      alt={weatherType}/>
             }
 

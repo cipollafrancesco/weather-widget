@@ -7,8 +7,7 @@ import type {ILocation} from '../index'
 import type {IWeatherBitResponse, IWeatherCurrentData} from '../services/weather-services.types'
 import {
     fetchWeatherData,
-    MOCKABLE_SERVER_URL_CURRENT,
-    MOCKABLE_SERVER_URL_FORECAST, WEATHERBIT_SERVER_URL_CURRENT,
+    WEATHERBIT_SERVER_URL_CURRENT,
     WEATHERBIT_SERVER_URL_FORECAST
 } from '../services/weather.services'
 import WeatherForecast from './weather-forecast/WeatherForecast'
@@ -70,7 +69,7 @@ const WeatherWidget = (props: IWeatherWidgetProps) => {
             <CurrentWeather currentWeatherData={selectedForecastWeatherItemData || currentWeatherData}
                             isFetchInPending={isFetchCurrentWeatherInPending}/>
 
-            <hr className="divider"/>
+            <span className="divider"/>
 
             {/* FORECAST (7 days) */}
             <WeatherForecast forecastWeatherData={forecastWeatherData}
