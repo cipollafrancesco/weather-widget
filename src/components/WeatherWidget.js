@@ -7,18 +7,18 @@ import type {ILocation} from '../index'
 import type {IWeatherBitResponse, IWeatherCurrentData} from '../services/weather-services.types'
 import {
     fetchWeatherData,
-    MOCKABLE_SERVER_URL_CURRENT,
-    MOCKABLE_SERVER_URL_FORECAST,
     WEATHERBIT_SERVER_URL_CURRENT,
     WEATHERBIT_SERVER_URL_FORECAST
 } from '../services/weather.services'
 import WeatherForecast from './weather-forecast/WeatherForecast'
 import {currentWeatherDataSelector} from '../services/weather.utils'
-import {isDevMode} from '../utils'
 
 interface IWeatherWidgetProps {
     location: ILocation
 }
+
+// DAYS OF FORECAST TO FETCH
+const DAYS_FORECAST = 7
 
 const WeatherWidget = (props: IWeatherWidgetProps) => {
 
@@ -42,19 +42,16 @@ const WeatherWidget = (props: IWeatherWidgetProps) => {
             const COORDINATES_QP = {lat: location.latitude, lon: location.longitude}
 
             // FETCH CURRENT WEATHER DATA
-            fetchWeatherData(
-                isDevMode() ? MOCKABLE_SERVER_URL_CURRENT : WEATHERBIT_SERVER_URL_CURRENT,
-                {...COORDINATES_QP},
-                setFetchCurrentWeatherInPending
-            ).then(
-                (resp: IWeatherBitResponse) => setCurrentWeatherData(currentWeatherDataSelector(resp)),
-                _ => setFetchCurrentWeatherInPending(false)
-            )
+            fetchWeatherData(WEATHERBIT_SERVER_URL_CURRENT, {...COORDINATES_QP}, setFetchCurrentWeatherInPending)
+                .then(
+                    (resp: IWeatherBitResponse) => setCurrentWeatherData(currentWeatherDataSelector(resp)),
+                    _ => setFetchCurrentWeatherInPending(false)
+                )
 
             // FETCH FORECAST WEATHER DATA
             fetchWeatherData(
-                isDevMode() ? MOCKABLE_SERVER_URL_FORECAST : WEATHERBIT_SERVER_URL_FORECAST,
-                {...COORDINATES_QP, days: 7},
+                WEATHERBIT_SERVER_URL_FORECAST,
+                {...COORDINATES_QP, days: DAYS_FORECAST},
                 setFetchForecastInPending
             ).then(
                 (resp: IWeatherBitResponse) => setForecastWeatherData(resp),
