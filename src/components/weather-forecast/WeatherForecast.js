@@ -34,11 +34,12 @@ const WeatherForecast = (props: IWeatherForecastProps) => {
         <div className="weather-forecast_container">
             {
                 !!forecastData.length ?
-                    forecastData.map(({datetime, max_temp, min_temp, weather}: IWeatherBitResponseData, index: number) =>
+                    forecastData.map(({datetime, max_temp, min_temp, weather,}: IWeatherBitResponseData, index: number) =>
                         <WeatherForecastItem key={`forecast_${index}`}
                                              date={datetime}
                                              maxTemp={max_temp}
                                              minTemp={min_temp}
+                                             description={weather.description}
                                              weatherCode={weather.code}
                                              current={currentForecastItem === index}
                                              onClick={handleForecastItemClick(index)}

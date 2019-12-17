@@ -3,12 +3,13 @@
     flex-direction: column;
     padding: 15px 18px;
     margin: 25px 0;
+    border-radius: 12px;
+    border: 1px solid transparent;
 }
 
 /* ITEM SELECTION ANIMATION */
 @keyframes weather-forecast-item--selected {
     from {
-        border: 1px solid transparent;
         background-color: transparent;
     }
     to {
@@ -18,7 +19,6 @@
 }
 
 .weather-forecast-item--selected {
-    border-radius: 12px;
     animation: weather-forecast-item--selected 0.3s linear both;
 }
 
