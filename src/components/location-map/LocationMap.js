@@ -16,7 +16,7 @@ const LocationMap = (props: ILocationMapProps) => {
     useEffect(() => {
         if (currentLocation) {
             const map = initializeMap(MAP_ELEMENT_ID, currentLocation)
-            const currentPositionMarker = addMarkerToMap(currentLocation, map)
+            addMarkerToMap(currentLocation, map)
         }
     }, [currentLocation])
 

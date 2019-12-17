@@ -29,8 +29,8 @@ const CurrentWeather = (props: ICurrentWeatherProps) => {
                     currentWeatherData ?
                         <>
                             {/* CURRENT CONDITION ICON */}
-                            <img src={weatherIcon} height={130}
-                                 width={220}
+                            <img src={weatherIcon}
+                                 className="current-weather_icon"
                                  alt={weatherType}
                                  title={currentWeatherData.weather.description}
                             />
