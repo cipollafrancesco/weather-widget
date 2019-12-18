@@ -30,13 +30,10 @@ function App() {
 
     return (
         <div className="App">
-            {/* CONTAINER */}
-            <div style={{width: '100%', height: '100%'}}>
                 {/* WEATHER FLIP CARD */}
                 <FlipCard frontComponent={<WeatherWidget location={location}/>}
                           backComponent={<LocationMap currentLocation={location}/>}
                 />
-            </div>
         </div>
     )
 }
