@@ -11,7 +11,11 @@ import {
     WEATHERBIT_SERVER_URL_FORECAST
 } from '../services/weather.services'
 import WeatherForecast from './weather-forecast/WeatherForecast'
-import {currentWeatherDataSelector} from '../services/weather.utils'
+import {
+    currentWeatherDataSelector,
+    currentWeatherNormalizedDataSelector,
+    forecastWeatherNormalizedDataSelector
+} from '../services/weather.utils'
 
 interface IWeatherWidgetProps {
     location: ILocation
@@ -35,6 +39,13 @@ const WeatherWidget = (props: IWeatherWidgetProps) => {
     // CURRENTLY SELECTED FORECAST ITEM DATA
     const [selectedForecastWeatherItemData, setForecastWeatherItemData] = useState<IWeatherBitResponse | null>(null)
 
+    // NORMALIZES CURRENT WEATHER DATA AND SET THE STATE
+    const handleFetchCurrentWeatherSuccess = (resp: IWeatherBitResponse) => {
+        const currentData = currentWeatherDataSelector(resp)
+        const currentDataNormalized = currentWeatherNormalizedDataSelector(currentData)
+        return setCurrentWeatherData(currentDataNormalized)
+    }
+
     // FETCH HANDLER ON LOCATION CHANGE
     useEffect(() => {
         if (location) {
@@ -44,7 +55,7 @@ const WeatherWidget = (props: IWeatherWidgetProps) => {
             // FETCH CURRENT WEATHER DATA
             fetchWeatherData(WEATHERBIT_SERVER_URL_CURRENT, {...COORDINATES_QP}, setFetchCurrentWeatherInPending)
                 .then(
-                    (resp: IWeatherBitResponse) => setCurrentWeatherData(currentWeatherDataSelector(resp)),
+                    handleFetchCurrentWeatherSuccess,
                     _ => setFetchCurrentWeatherInPending(false)
                 )
 
@@ -63,6 +74,9 @@ const WeatherWidget = (props: IWeatherWidgetProps) => {
     // CITY NAME TO DISPLAY
     const currentCityName = (currentWeatherData && currentWeatherData.city_name) || (forecastWeatherData && forecastWeatherData.city_name)
 
+    // NORMALIZED FORECAST DATA
+    const forecastWeatherDataNormalized = forecastWeatherNormalizedDataSelector(forecastWeatherData)
+
     return (
         <div className="weather-widget_container">
 
@@ -78,7 +92,7 @@ const WeatherWidget = (props: IWeatherWidgetProps) => {
             <span className="divider"/>
 
             {/* FORECAST (7 days) */}
-            <WeatherForecast forecastWeatherData={forecastWeatherData}
+            <WeatherForecast forecastWeatherData={forecastWeatherDataNormalized}
                              isFetchInPending={isFetchForecastInPending}
                              setCurrentWeatherData={setForecastWeatherItemData}/>
         </div>

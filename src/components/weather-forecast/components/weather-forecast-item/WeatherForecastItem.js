@@ -8,8 +8,8 @@ import {MAP_WEATHER_CODE_TO_TYPE} from '../../../../services/weather-codes.mappe
 interface IWeatherForecastItemProps {
     minTemp: number,
     maxTemp: number,
-    description: string,
-    date: string,
+    weatherDescription: string,
+    date: Date,
     weatherCode?: string,
     current?: boolean,
     onClick?: (event: any) => any
@@ -17,12 +17,10 @@ interface IWeatherForecastItemProps {
 
 const WeatherForecastItem = (props: IWeatherForecastItemProps) => {
 
-    const {onClick, description} = props
+    const {onClick, weatherDescription, date} = props
 
-    const forecastDate = new Date(props.date)
-
-    const dayOfTheWeek = MAP_DAY_NUMBER_TO_STRING[forecastDate.getDay()]
-    const monthDay = forecastDate.getDate()
+    const dayOfTheWeek = date ? MAP_DAY_NUMBER_TO_STRING[date.getDay()] : ''
+    const monthDay = date ? date.getDate() : ''
 
     const weatherType = props.weatherCode && MAP_WEATHER_CODE_TO_TYPE[props.weatherCode]
     const weatherIcon = weatherType && MAP_WEATHER_CONDITIONS_TO_ICON[weatherType]
@@ -39,14 +37,22 @@ const WeatherForecastItem = (props: IWeatherForecastItemProps) => {
                 weatherIcon &&
                 <img src={weatherIcon}
                      className="weather-forecast-item_icon"
-                     title={description}
+                     title={weatherDescription}
                      alt={weatherType}/>
             }
 
             {/* MAX TEMP - MIN TEMP */}
-            {/* TODO CONTROLLI */}
             <span
-                className="weather-forecast-item_temperature">{props.maxTemp.toFixed()}° - {props.minTemp.toFixed()}°</span>
+                className="weather-forecast-item_temperature">
+                {/* MAX TEMPERATURE */}
+                {props.maxTemp ? `${props.maxTemp.toFixed()}°` : ''}
+
+                {/* SEPARATOR */}
+                {props.minTemp ? '-' : ''}
+
+                {/* MIN TEMPERATURE */}
+                {props.minTemp ? `${props.minTemp.toFixed()}°` : ''}
+            </span>
         </div>
     )
 }

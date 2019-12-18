@@ -1,12 +1,11 @@
 // @flow
 import React from 'react'
 import './CurrentWeather.css'
-import type {IWeatherCurrentData} from '../../services/weather-services.types'
 import {MAP_WEATHER_CONDITIONS_TO_ICON} from '../../services/weather-services.types'
 import {MAP_WEATHER_CODE_TO_TYPE} from '../../services/weather-codes.mapper'
 
 interface ICurrentWeatherProps {
-    currentWeatherData: IWeatherCurrentData,
+    currentWeatherData: ICurrentWeatherNormalizedData,
     isFetchInPending: boolean
 }
 
@@ -15,9 +14,7 @@ const CurrentWeather = (props: ICurrentWeatherProps) => {
 
     const {currentWeatherData, isFetchInPending} = props
 
-    const weatherType = props.currentWeatherData &&
-        MAP_WEATHER_CODE_TO_TYPE[props.currentWeatherData.weather.code]
-
+    const weatherType = props.currentWeatherData && MAP_WEATHER_CODE_TO_TYPE[currentWeatherData.weatherCode]
     const weatherIcon = weatherType && MAP_WEATHER_CONDITIONS_TO_ICON[weatherType]
 
     return (
@@ -32,7 +29,7 @@ const CurrentWeather = (props: ICurrentWeatherProps) => {
                             <img src={weatherIcon}
                                  className="current-weather_icon"
                                  alt={weatherType}
-                                 title={currentWeatherData.weather.description}
+                                 title={currentWeatherData.weatherDescription}
                             />
 
                             {/* CURRENT TEMPERATURE */}
