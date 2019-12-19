@@ -1,11 +1,14 @@
 .flip-card {
     cursor: pointer;
     transition: transform 1s;
+    -webkit-transition: transform 1s;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
 }
 
 .flip-card-face {
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     background-color: #232e3e;
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,8 +28,10 @@
     right: 0;
     left: 0;
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 .flipped {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
