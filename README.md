@@ -33,7 +33,3 @@ nuvola con pioggia per "Pioggia", ecc)
 6. Fai girare l'esercisio su codesandbox
 7. Quando hai terminato l'esercizio mettilo su github e inviami direttamente il link del repo e il link della sandbox.
 8. Sul mockup grafico troverai solamente il lato A della flip-card, per il lato B inserisci direttamente la mappa.
-
-
-
-### RICORDA DI DIVERTIRTI!!!
